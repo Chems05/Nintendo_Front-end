@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #e60012;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand img {
+  max-height: 70px;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: larger;
+}
+
+.nav-link:hover {
+  color: #ffcc00;
+}
+
+.navbar-toggler {
+  border-color: #000000;
+}
+
+.navbar-toggler-icon {
+  background-color: #ffcc00;
+}
+
+.navbar .container {
+  padding-left: 10px;
+}

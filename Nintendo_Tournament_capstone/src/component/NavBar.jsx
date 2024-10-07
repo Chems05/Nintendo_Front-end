@@ -35,17 +35,11 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Informazioni
+                chat
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contatti
-              </a>
-            </li>
-            <li className="nav-item">
-              <div className="user-icon"></div>{" "}
-              {/* Quadrato vuoto per l'immagine dell'utente */}
+              <div className="user-icon"></div> {/* l'immagine dell'utente */}
             </li>
           </ul>
         </div>

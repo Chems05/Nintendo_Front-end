@@ -50,7 +50,6 @@ footer {
   padding-top: 55px;
 }
 
-/* Video background settings */
 .hero {
   position: relative;
   overflow: hidden;
@@ -63,7 +62,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 89%;
   object-fit: cover;
 }
 
@@ -99,8 +98,22 @@ footer {
   background-color: #c9302c;
 }
 
-/* Footer */
 footer {
   background-color: #343a40;
   color: white;
+}
+
+.border-img {
+  border: 5px solid #ff00007e;
+  border-radius: 8px;
+}
+
+.switch {
+  border: 5px solid #ff00007e;
+  border-radius: 8px;
+}
+
+.games {
+  border: 5px solid #ff00007e;
+  border-radius: 8px;
 }

@@ -1,19 +1,19 @@
-/* Stile unicamente per la card di login */
-.login-page-container {
-  background-color: #36393d; /* Colore di sfondo solo per la card */
+/* Stile specifico solo per la card di registrazione */
+.register-page-container {
+  background-color: #363333; /* Colore di sfondo chiaro */
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(253, 61, 61, 0.1); /* Ombra leggera */
   transition: box-shadow 0.3s ease-in-out;
 }
 
 /* Ombra della card al passaggio del mouse */
-.login-page-container:hover {
+.register-page-container:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Titolo nella card di login */
-.login-page-container h2 {
+/* Titolo nella card di registrazione */
+.register-page-container h2 {
   color: #ffffff;
   font-weight: bold;
   text-align: center;
@@ -21,13 +21,13 @@
 }
 
 /* Stile del form specifico solo per la card */
-.login-page-container form {
+.register-page-container form {
   width: 100%;
 }
 
 /* Input del form nella card */
-.login-page-container form .form-control {
-  border: 1px solid #eeeeee;
+.register-page-container form .form-control {
+  border: 1px solid #ced4da;
   border-radius: 5px;
   padding: 10px;
   font-size: 16px;
@@ -35,30 +35,30 @@
 }
 
 /* Colore del focus su input */
-.login-page-container form .form-control:focus {
-  border-color: #007bff;
+.register-page-container form .form-control:focus {
+  border-color: #ffffff;
 }
 
-/* Pulsante di login */
-.login-page-container button[type="submit"] {
+/* Pulsante di registrazione */
+.register-page-container button[type="submit"] {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border: none;
   border-radius: 5px;
-  color: rgb(190, 3, 3);
+  color: rgb(255, 0, 0);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 /* Hover del pulsante */
-.login-page-container button[type="submit"]:hover {
-  background-color: #3d3e3f;
+.register-page-container button[type="submit"]:hover {
+  background-color: #242525;
 }
 
 /* Alert per il messaggio di errore/successo */
-.login-page-container .alert {
+.register-page-container .alert {
   margin-top: 15px;
   text-align: center;
   font-size: 14px;

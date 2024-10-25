@@ -1,8 +1,15 @@
-# React + Vite
+CAPSTONE NINTENDO TOURNAMENT SYSTEM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+back-end: https://github.com/Chems05/Nintendo_Back-end
 
-Currently, two official plugins are available:
+1- copiare il nome della cartella e nel terminale fare npm cd "nome della cartella"
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2- fare npm run dev
+
+3- copiare il localhost in alto nel url e nel back end andare nella cartella security poi security config ed esattamente in questa riga di codice
+
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
+
+sostituire il local host corrente con quello che avete copiato
+
+4- salvare e avviare il backend

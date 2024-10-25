@@ -7,6 +7,7 @@ import {
   updateTournament,
   deleteTournament,
 } from "../services/service";
+import { Row, Col } from "react-bootstrap";
 
 const TournamentList = () => {
   const [nomeTorneo, setNomeTorneo] = useState("");
@@ -203,35 +204,42 @@ const TournamentList = () => {
         </div>
       </div>
       <div className="tournament-cards">
-        {tornei.length > 0 ? (
-          tornei.map((torneo) => (
-            <div className="tournament-card" key={torneo.id}>
-              <h3>{torneo.nomeTorneo}</h3>
-              <p>Data di Inizio: {torneo.dataInizio}</p>
-              <p>Data di Fine: {torneo.dataFine}</p>
-              <p>Partecipanti: {torneo.numeroMassimoPartecipanti}</p>
-              <p>Stato: {torneo.statoTorneo}</p>
-              <p>Descrizione: {torneo.descrizione}</p>
-              <button onClick={() => handleEdit(torneo)} className="btn-edit">
-                Modifica
-              </button>
-              <button
-                onClick={() => handleDelete(torneo.id)}
-                className="btn-delete"
-              >
-                Elimina
-              </button>
-              <button
-                onClick={() => handleParticipate(torneo.id)}
-                className="btn-participate"
-              >
-                Partecipa
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>Nessun torneo disponibile.</p>
-        )}
+        <Row>
+          {tornei.length > 0 ? (
+            tornei.map((torneo) => (
+              <Col md={4} key={torneo.id} className="mb-4">
+                <div className="tournament-card">
+                  <h3>{torneo.nomeTorneo}</h3>
+                  <p>Data di Inizio: {torneo.dataInizio}</p>
+                  <p>Data di Fine: {torneo.dataFine}</p>
+                  <p>Partecipanti: {torneo.numeroMassimoPartecipanti}</p>
+                  <p>Stato: {torneo.statoTorneo}</p>
+                  <p>Descrizione: {torneo.descrizione}</p>
+                  <button
+                    onClick={() => handleEdit(torneo)}
+                    className="btn-edit"
+                  >
+                    Modifica
+                  </button>
+                  <button
+                    onClick={() => handleDelete(torneo.id)}
+                    className="btn-delete"
+                  >
+                    Elimina
+                  </button>
+                  <button
+                    onClick={() => handleParticipate(torneo.id)}
+                    className="btn-participate"
+                  >
+                    Partecipa
+                  </button>
+                </div>
+              </Col>
+            ))
+          ) : (
+            <p>Nessun torneo disponibile.</p>
+          )}
+        </Row>
       </div>
     </div>
   );

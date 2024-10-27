@@ -7,6 +7,7 @@ import RegisterPage from "./component/RegisterPage";
 import ProfilePage from "./component/ProfilePage";
 import TournamentList from "./component/TournamentList";
 import Tournament from "./component/Tournament";
+import ChatPage from "./component/ChatPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/tournamentlist" element={<TournamentList />} />
         <Route path="/tournament/:id" element={<Tournament />} />
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </Router>
   );

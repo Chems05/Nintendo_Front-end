@@ -43,3 +43,22 @@
   background-color: #343536;
   color: red;
 }
+
+.avatar-container {
+  margin-bottom: 20px;
+}
+
+.avatar-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+}
+
+.btn-custom {
+  width: 100%;
+}
+
+.input-custom {
+  margin-bottom: 15px;
+}

@@ -1,18 +1,15 @@
-/* Stile unicamente per la card di login */
 .login-page-container {
-  background-color: #36393d; /* Colore di sfondo solo per la card */
+  background-color: #36393d;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Ombra della card al passaggio del mouse */
 .login-page-container:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Titolo nella card di login */
 .login-page-container h2 {
   color: #ffffff;
   font-weight: bold;
@@ -20,12 +17,10 @@
   margin-bottom: 20px;
 }
 
-/* Stile del form specifico solo per la card */
 .login-page-container form {
   width: 100%;
 }
 
-/* Input del form nella card */
 .login-page-container form .form-control {
   border: 1px solid #eeeeee;
   border-radius: 5px;
@@ -34,12 +29,10 @@
   transition: border-color 0.2s;
 }
 
-/* Colore del focus su input */
 .login-page-container form .form-control:focus {
   border-color: #007bff;
 }
 
-/* Pulsante di login */
 .login-page-container button[type="submit"] {
   width: 100%;
   padding: 10px;
@@ -52,12 +45,10 @@
   transition: background-color 0.3s ease;
 }
 
-/* Hover del pulsante */
 .login-page-container button[type="submit"]:hover {
   background-color: #3d3e3f;
 }
 
-/* Alert per il messaggio di errore/successo */
 .login-page-container .alert {
   margin-top: 15px;
   text-align: center;

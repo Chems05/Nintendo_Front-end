@@ -6,6 +6,7 @@ import {
   createTournament,
   updateTournament,
   deleteTournament,
+  fetchGames,
 } from "../services/service";
 import { Row, Col } from "react-bootstrap";
 
@@ -20,6 +21,7 @@ const TournamentList = () => {
   const [organizzatoreId, setOrganizzatoreId] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [tornei, setTornei] = useState([]);
+  const [giochi, setGiochi] = useState([]);
   const [editingTournamentId, setEditingTournamentId] = useState(null);
   const navigate = useNavigate();
 
@@ -29,6 +31,7 @@ const TournamentList = () => {
       setOrganizzatoreId(storedUser.id);
     }
     fetchTournamentsFromService();
+    fetchGamesFromService();
   }, []);
 
   const fetchTournamentsFromService = async () => {
@@ -44,6 +47,17 @@ const TournamentList = () => {
     } catch (error) {
       console.error("Errore nel recupero dei tornei:", error);
       setTornei([]);
+    }
+  };
+
+  const fetchGamesFromService = async () => {
+    try {
+      const data = await fetchGames();
+      console.log("Giochi ricevuti:", data);
+      setGiochi(data);
+    } catch (error) {
+      console.error("Errore nel recupero dei giochi:", error);
+      setGiochi([]);
     }
   };
 
@@ -126,82 +140,92 @@ const TournamentList = () => {
 
   return (
     <div className="tournament-list-container">
-      <button className="btn-open-form" onClick={toggleForm}>
-        {showForm ? "Chiudi Form" : "Crea un Nuovo Torneo"}
-      </button>
-      <div className={showForm ? "form-visible" : "form-hidden"}>
-        <div className="create-tournament-container">
-          <h2>{editingTournamentId ? "Modifica Torneo" : "Crea un Torneo"}</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Nome del Torneo:</label>
-              <input
-                type="text"
-                value={nomeTorneo}
-                onChange={(e) => setNomeTorneo(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Data di Inizio:</label>
-              <input
-                type="date"
-                value={dataInizio}
-                onChange={(e) => setDataInizio(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Data di Fine:</label>
-              <input
-                type="date"
-                value={dataFine}
-                onChange={(e) => setDataFine(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Numero Massimo di Partecipanti:</label>
-              <input
-                type="number"
-                value={numeroMassimoPartecipanti}
-                onChange={(e) => setNumeroMassimoPartecipanti(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Stato del Torneo:</label>
-              <select
-                value={statoTorneo}
-                onChange={(e) => setStatoTorneo(e.target.value)}
-              >
-                <option value="IN_CORSO">In Corso</option>
-                <option value="CONCLUSO">Concluso</option>
-                <option value="CANCELLATO">Cancellato</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>ID del Gioco:</label>
-              <input
-                type="text"
-                value={giocoId}
-                onChange={(e) => setGiocoId(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Descrizione:</label>
-              <textarea
-                value={descrizione}
-                onChange={(e) => setDescrizione(e.target.value)}
-                required
-              ></textarea>
-            </div>
-            <button type="submit" className="btn-create-tournament">
-              {editingTournamentId ? "Aggiorna Torneo" : "Crea Torneo"}
-            </button>
-          </form>
-        </div>
+      <div>
+        <button className="btn-open-form" onClick={toggleForm}>
+          {showForm ? "Chiudi Form" : "Crea un Nuovo Torneo"}
+        </button>
+        {showForm && (
+          <div className="create-tournament-container">
+            <h2>
+              {editingTournamentId ? "Modifica Torneo" : "Crea un Torneo"}
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Nome del Torneo:</label>
+                <input
+                  type="text"
+                  value={nomeTorneo}
+                  onChange={(e) => setNomeTorneo(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Data di Inizio:</label>
+                <input
+                  type="date"
+                  value={dataInizio}
+                  onChange={(e) => setDataInizio(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Data di Fine:</label>
+                <input
+                  type="date"
+                  value={dataFine}
+                  onChange={(e) => setDataFine(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Numero Massimo di Partecipanti:</label>
+                <input
+                  type="number"
+                  value={numeroMassimoPartecipanti}
+                  onChange={(e) => setNumeroMassimoPartecipanti(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Stato del Torneo:</label>
+                <select
+                  value={statoTorneo}
+                  onChange={(e) => setStatoTorneo(e.target.value)}
+                >
+                  <option value="IN_CORSO">In Corso</option>
+                  <option value="CONCLUSO">Concluso</option>
+                  <option value="CANCELLATO">Cancellato</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Gioco:</label>
+                <select
+                  value={giocoId}
+                  onChange={(e) => setGiocoId(e.target.value)}
+                  required
+                >
+                  <option value="">Seleziona un Gioco</option>
+                  {giochi.map((gioco) => (
+                    <option key={gioco.id} value={gioco.id}>
+                      {gioco.nome}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Descrizione:</label>
+                <textarea
+                  value={descrizione}
+                  onChange={(e) => setDescrizione(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" className="btn-create-tournament">
+                {editingTournamentId ? "Aggiorna Torneo" : "Crea Torneo"}
+              </button>
+            </form>
+          </div>
+        )}
       </div>
       <div className="tournament-cards">
         <Row>

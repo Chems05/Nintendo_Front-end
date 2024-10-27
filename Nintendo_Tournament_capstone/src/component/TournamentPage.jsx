@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import torneoImg from "../assets/tornei.png"; // Assicurati che il percorso sia corretto
+import torneoImg from "../assets/tornei.png";
 import "../style/TournamentPage.css";
 import { useNavigate } from "react-router-dom";
 
 const TournamentPage = () => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // Hook per la navigazione
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -14,7 +14,7 @@ const TournamentPage = () => {
   }, []);
 
   const handleTournamentClick = () => {
-    navigate("/tournamentlist"); // Naviga alla lista tornei
+    navigate("/tournamentlist");
   };
 
   return (
@@ -45,8 +45,8 @@ const TournamentPage = () => {
               <img
                 src={torneoImg}
                 alt="Visualizza Tornei"
-                className="zoom-image" // Applica la classe CSS per l'effetto zoom
-                onClick={handleTournamentClick} // Aggiungiamo l'evento per la navigazione
+                className="zoom-image"
+                onClick={handleTournamentClick}
               />
             </Col>
           </Row>

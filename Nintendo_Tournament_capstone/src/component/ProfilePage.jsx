@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
-import { updateUserProfile, getUserInfo } from "../services/service"; // Importa i tuoi servizi
-import { Button, Form, Alert, Spinner } from "react-bootstrap";
-import "../style/ProfilePage.css"; // Aggiungi il tuo file CSS per stili personalizzati
+import {
+  updateUserProfile,
+  getUserInfo,
+  uploadAvatar,
+} from "../services/service";
+import { Button, Form, Alert, Spinner, Image } from "react-bootstrap";
+import "../style/ProfilePage.css";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -42,11 +48,38 @@ const ProfilePage = () => {
     }
   };
 
+  const handleAvatarChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setAvatarFile(selectedFile);
+  };
+
+  const handleAvatarUpload = async () => {
+    if (!avatarFile) return;
+
+    setUploadingAvatar(true);
+    const formData = new FormData();
+    formData.append("avatar", avatarFile);
+
+    try {
+      const updatedUser = await uploadAvatar(userData.id, formData);
+      setUserData(updatedUser);
+      setSuccess(true);
+      setError(null);
+    } catch (error) {
+      console.error("Errore durante il caricamento dell'avatar:", error);
+      setError("Errore durante il caricamento dell'avatar.");
+      setSuccess(false);
+    } finally {
+      setUploadingAvatar(false);
+      setAvatarFile(null);
+    }
+  };
+
   if (loading) {
     return (
       <div className="text-center">
         <Spinner animation="border" variant="primary" />
-        <p>Loading...</p>
+        <p>Caricamento...</p>
       </div>
     );
   }
@@ -58,7 +91,32 @@ const ProfilePage = () => {
       {success && (
         <Alert variant="success">Profilo aggiornato con successo!</Alert>
       )}
-      <Form onSubmit={handleSubmit} className="profile-form">
+
+      {userData.avatar && (
+        <div className="avatar-container text-center">
+          <Image src={userData.avatar} roundedCircle className="avatar-image" />
+          <h5>Avatar Corrente</h5>
+        </div>
+      )}
+
+      <Form.Group controlId="formAvatar" className="mt-3">
+        <Form.Label>Carica un nuovo avatar</Form.Label>
+        <Form.Control
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarChange}
+        />
+        <Button
+          variant="primary"
+          onClick={handleAvatarUpload}
+          disabled={!avatarFile || uploadingAvatar}
+          className="mt-2"
+        >
+          {uploadingAvatar ? "Caricamento..." : "Carica Avatar"}
+        </Button>
+      </Form.Group>
+
+      <Form onSubmit={handleSubmit} className="profile-form mt-3">
         <Form.Group controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control

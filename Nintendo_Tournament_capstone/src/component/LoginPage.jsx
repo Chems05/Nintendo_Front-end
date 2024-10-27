@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 import { loginUser } from "../services/service";
 import { useNavigate } from "react-router-dom";
-
 import "../style/LoginPage.css";
 
 const Login = () => {
@@ -38,7 +37,7 @@ const Login = () => {
   };
 
   const handleRegisterClick = () => {
-    navigate("/register"); // Reindirizza alla pagina di registrazione
+    navigate("/register");
   };
 
   return (

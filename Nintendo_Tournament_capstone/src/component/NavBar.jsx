@@ -4,6 +4,7 @@ import logo from "../assets/nintendo.logo.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import Image from "react-bootstrap/Image";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -20,7 +21,7 @@ const NavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    localStorage.removeItem("employeeId"); // Aggiunta per rimuovere l'employeeId
+    localStorage.removeItem("employeeId");
     setUser(null);
   };
 
@@ -62,11 +63,31 @@ const NavBar = () => {
               <li className="nav-item dropdown">
                 <Dropdown>
                   <Dropdown.Toggle
-                    className="nav-link dropdown-toggle btn-dark"
+                    className="nav-link dropdown-toggle btn-dark d-flex align-items-center"
                     id="navbarDropdown"
                     aria-expanded="false"
                   >
-                    Ciao, {user.username}{" "}
+                    {user.avatar ? (
+                      <Image
+                        src={user.avatar}
+                        alt="Avatar"
+                        roundedCircle
+                        width={30}
+                        height={30}
+                        className="me-2"
+                      />
+                    ) : (
+                      <div
+                        className="me-2"
+                        style={{
+                          width: 30,
+                          height: 30,
+                          borderRadius: "50%",
+                          backgroundColor: "#ccc",
+                        }}
+                      ></div>
+                    )}
+                    {user.username}{" "}
                   </Dropdown.Toggle>
                   <Dropdown.Menu aria-labelledby="navbarDropdown">
                     <Dropdown.Item as={Link} to="/profile">

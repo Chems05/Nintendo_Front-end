@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
-import { registerUser } from "../services/service"; // Assicurati che registerUser sia importato
+import { registerUser } from "../services/service";
 import { useNavigate } from "react-router-dom";
 import "../style/RegisterPage.css";
 
@@ -9,7 +9,6 @@ const RegisterPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
-  // Assicurati che tutti i valori siano inizializzati come stringhe vuote
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,11 +28,11 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(formData); // Rimuovendo l'URL dalla chiamata
+      await registerUser(formData);
       setSuccessMessage("Registrazione effettuata con successo!");
       setErrorMessage("");
       setTimeout(() => {
-        navigate("/login"); // Reindirizza alla pagina di login dopo la registrazione
+        navigate("/login");
       }, 1000);
     } catch (error) {
       setErrorMessage(error.message || "Registrazione fallita. Riprova.");

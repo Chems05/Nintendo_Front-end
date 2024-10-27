@@ -14,7 +14,9 @@ const NavBar = () => {
     const token = localStorage.getItem("token");
 
     if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
+      const userObj = JSON.parse(storedUser);
+      console.log("User from localStorage:", userObj); // Log per il debug
+      setUser(userObj);
     }
   }, []);
 
@@ -22,6 +24,7 @@ const NavBar = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("employeeId");
+    localStorage.removeItem("avatar"); // Rimuovi l'avatar dal localStorage
     setUser(null);
   };
 
@@ -87,7 +90,7 @@ const NavBar = () => {
                         }}
                       ></div>
                     )}
-                    {user.username}{" "}
+                    {user.username}
                   </Dropdown.Toggle>
                   <Dropdown.Menu aria-labelledby="navbarDropdown">
                     <Dropdown.Item as={Link} to="/profile">

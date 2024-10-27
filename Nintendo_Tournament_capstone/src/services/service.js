@@ -87,12 +87,19 @@ const getUserInfo = async () => {
     const userData = await response.json();
     console.log("Informazioni utente:", userData);
 
-    if (userData.id && userData.username && userData.email && userData.ruolo) {
+    if (
+      userData.id &&
+      userData.username &&
+      userData.email &&
+      userData.ruolo &&
+      userData.avatar
+    ) {
       const user = {
         id: userData.id,
         username: userData.username,
         email: userData.email,
         role: userData.ruolo,
+        avatar: userData.avatar,
       };
 
       localStorage.setItem("user", JSON.stringify(user));
@@ -234,7 +241,67 @@ const deleteTournament = async (tournamentId) => {
   return await response.json();
 };
 
+const uploadAvatar = async (userId, formData) => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await fetch(`${baseUrl}/utenti/${userId}/avatar`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.message || "Errore durante il caricamento dell'avatar."
+      );
+    }
+
+    const updatedUser = await response.json();
+
+    localStorage.setItem("avatar", updatedUser.avatar);
+    console.log("Avatar salvato nel localStorage:", updatedUser.avatar);
+
+    return updatedUser;
+  } catch (error) {
+    console.error("Errore nel caricamento dell'avatar:", error);
+    throw error;
+  }
+};
+
+const fetchGames = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`${baseUrl}/giochi`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.message || "Errore durante il recupero dei giochi."
+      );
+    }
+
+    const games = await response.json();
+    console.log("Giochi ricevuti:", games);
+    return games;
+  } catch (error) {
+    console.error("Errore nel recupero dei giochi:", error);
+    throw error;
+  }
+};
+
 export {
+  fetchGames,
   createTournament,
   loginUser,
   registerUser,
@@ -243,4 +310,5 @@ export {
   fetchTournaments,
   updateTournament,
   deleteTournament,
+  uploadAvatar,
 };

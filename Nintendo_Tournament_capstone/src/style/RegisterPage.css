@@ -1,18 +1,15 @@
-/* Stile specifico solo per la card di registrazione */
 .register-page-container {
-  background-color: #363333; /* Colore di sfondo chiaro */
+  background-color: #363333;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(253, 61, 61, 0.1); /* Ombra leggera */
+  box-shadow: 0 4px 8px rgba(253, 61, 61, 0.1);
   transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Ombra della card al passaggio del mouse */
 .register-page-container:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Titolo nella card di registrazione */
 .register-page-container h2 {
   color: #ffffff;
   font-weight: bold;
@@ -20,12 +17,10 @@
   margin-bottom: 20px;
 }
 
-/* Stile del form specifico solo per la card */
 .register-page-container form {
   width: 100%;
 }
 
-/* Input del form nella card */
 .register-page-container form .form-control {
   border: 1px solid #ced4da;
   border-radius: 5px;
@@ -34,12 +29,10 @@
   transition: border-color 0.2s;
 }
 
-/* Colore del focus su input */
 .register-page-container form .form-control:focus {
   border-color: #ffffff;
 }
 
-/* Pulsante di registrazione */
 .register-page-container button[type="submit"] {
   width: 100%;
   padding: 10px;
@@ -52,12 +45,10 @@
   transition: background-color 0.3s ease;
 }
 
-/* Hover del pulsante */
 .register-page-container button[type="submit"]:hover {
   background-color: #242525;
 }
 
-/* Alert per il messaggio di errore/successo */
 .register-page-container .alert {
   margin-top: 15px;
   text-align: center;

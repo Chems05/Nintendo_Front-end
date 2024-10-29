@@ -37,7 +37,6 @@ const TournamentPage = () => {
           <Row>
             <Col>
               <h2 className="mb-4">Benvenuto, {user.username}!</h2>
-              <p>Scopri i tornei disponibili.</p>
             </Col>
           </Row>
           <Row className="mb-4">

@@ -346,20 +346,15 @@ const getMessages = async () => {
   return await response.json();
 };
 
-// Creare una nuova squadra
-const creaSquadra = async (datiSquadra) => {
+const creaSquadra = async (squadraData) => {
   const token = localStorage.getItem("token");
-  if (!token) {
-    throw new Error("Token mancante. Effettua il login.");
-  }
-
   const response = await fetch(`${baseUrl}/squadre`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(datiSquadra),
+    body: JSON.stringify(squadraData),
   });
 
   if (!response.ok) {
@@ -372,41 +367,12 @@ const creaSquadra = async (datiSquadra) => {
   return await response.json();
 };
 
-// Ottenere una squadra per ID
-const ottieniSquadraPerId = async (idSquadra) => {
+const ottieniTutteLeSquadre = async (torneoId) => {
   const token = localStorage.getItem("token");
-  if (!token) {
-    throw new Error("Token mancante. Effettua il login.");
-  }
-  const response = await fetch(`${baseUrl}/squadre/${idSquadra}`, {
+  const response = await fetch(`${baseUrl}/tornei/${torneoId}`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Aggiungi il Bearer token qui
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(
-      errorData.message || "Errore durante il recupero della squadra."
-    );
-  }
-
-  return await response.json();
-};
-
-// Ottenere tutte le squadre
-const ottieniTutteLeSquadre = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    throw new Error("Token mancante. Effettua il login.");
-  }
-  const response = await fetch(`${baseUrl}/squadre`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Aggiungi il Bearer token qui
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -418,57 +384,6 @@ const ottieniTutteLeSquadre = async () => {
   }
 
   return await response.json();
-};
-
-// Aggiornare una squadra
-const aggiornaSquadra = async (idSquadra, datiAggiornati) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    throw new Error("Token mancante. Effettua il login.");
-  }
-
-  const response = await fetch(`${baseUrl}/squadre/${idSquadra}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(datiAggiornati),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(
-      errorData.message || "Errore durante l'aggiornamento della squadra."
-    );
-  }
-
-  return await response.json();
-};
-
-// Eliminare una squadra
-const eliminaSquadra = async (idSquadra) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    throw new Error("Token mancante. Effettua il login.");
-  }
-
-  const response = await fetch(`${baseUrl}/squadre/${idSquadra}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(
-      errorData.message || "Errore durante l'eliminazione della squadra."
-    );
-  }
-
-  return response.status === 204; // Restituisce true se la risposta è 204 No Content
 };
 
 export {
@@ -485,8 +400,5 @@ export {
   sendMessage,
   getMessages,
   creaSquadra,
-  ottieniSquadraPerId,
   ottieniTutteLeSquadre,
-  aggiornaSquadra,
-  eliminaSquadra,
 };

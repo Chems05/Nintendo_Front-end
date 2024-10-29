@@ -24,12 +24,8 @@
 }
 
 .tournament-hero {
-  background: linear-gradient(
-    to right,
-    #ff7e5f,
-    #feb47b
-  ); /* Gradient per l'eroe */
-  color: white; /* Colore del testo bianco */
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
 }
 
 .card {
@@ -37,7 +33,7 @@
 }
 
 .card:hover {
-  transform: scale(1.05); /* Effetto hover per i card */
+  transform: scale(1.05);
 }
 
 .tournament-hero {
@@ -59,9 +55,9 @@
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out; /* Aggiunge una transizione */
+  transition: transform 0.3s ease-in-out;
 }
 
 .zoom-image:hover {
-  transform: scale(1.05); /* Effetto zoom */
+  transform: scale(1.05);
 }

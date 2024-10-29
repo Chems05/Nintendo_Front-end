@@ -6,8 +6,9 @@ import LoginPage from "./component/LoginPage";
 import RegisterPage from "./component/RegisterPage";
 import ProfilePage from "./component/ProfilePage";
 import TournamentList from "./component/TournamentList";
-import Tournament from "./component/Tournament";
-// import ChatPage from "./component/ChatPage";
+import Tournament from "./component/tournament/Tournament";
+import ChatPage from "./component/ChatPage";
+import NotFoundPages from "./component/notFoundPage";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/tournamentlist" element={<TournamentList />} />
         <Route path="/tournament/:id" element={<Tournament />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="*" element={<NotFoundPages />} /> {/* Aggiunto il 404 */}
       </Routes>
     </Router>
   );

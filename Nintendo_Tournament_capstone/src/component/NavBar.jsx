@@ -1,3 +1,4 @@
+// src/components/NavBar.js
 import "bootstrap/dist/css/bootstrap.css";
 import "../style/NavBar.css";
 import logo from "../assets/nintendo.logo.png";
@@ -57,11 +58,14 @@ const NavBar = () => {
                 Tornei
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/chat">
-                Chat
-              </Link>
-            </li>
+            {/* Visualizza la Chat solo se il token è presente */}
+            {localStorage.getItem("token") && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/chat">
+                  Chat
+                </Link>
+              </li>
+            )}
             {user ? (
               <li className="nav-item dropdown">
                 <Dropdown>

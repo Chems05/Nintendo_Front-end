@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button, Container, Form, Alert } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Button, Container, Form, Alert, Spinner } from "react-bootstrap";
 import { loginUser } from "../services/service";
 import { useNavigate } from "react-router-dom";
 import "../style/LoginPage.css";
@@ -7,6 +7,7 @@ import "../style/LoginPage.css";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: "",
@@ -19,10 +20,14 @@ const Login = () => {
       ...credentials,
       [name]: value,
     });
+    // Reset error message on input change
+    setErrorMessage("");
+    setSuccessMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await loginUser(credentials);
       setSuccessMessage("Login effettuato con successo!");
@@ -33,12 +38,23 @@ const Login = () => {
     } catch (error) {
       setErrorMessage(error.message || "Login fallito. Riprova.");
       setSuccessMessage("");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleRegisterClick = () => {
     navigate("/register");
   };
+
+  useEffect(() => {
+    // Clear messages after a few seconds
+    const timer = setTimeout(() => {
+      setErrorMessage("");
+      setSuccessMessage("");
+    }, 3000);
+    return () => clearTimeout(timer); // Clean up the timer on unmount
+  }, [errorMessage, successMessage]);
 
   return (
     <Container className="login-page-container my-5 d-flex flex-column justify-content-center align-items-center w-50 border rounded">
@@ -68,8 +84,19 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="mt-4">
-          Accedi
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-4"
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <Spinner animation="border" size="sm" /> Caricamento...
+            </>
+          ) : (
+            "Accedi"
+          )}
         </Button>
       </Form>
       <div className="mt-3">

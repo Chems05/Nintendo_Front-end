@@ -8,6 +8,8 @@ import ProfilePage from "./component/ProfilePage";
 import TournamentList from "./component/TournamentList";
 import Tournament from "./component/Tournament";
 import ChatPage from "./component/ChatPage";
+import Regolamento from "./component/Regolamento";
+import Contattaci from "./component/Contattaci";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/tournamentlist" element={<TournamentList />} />
         <Route path="/tournament/:torneoId" element={<Tournament />} />
         <Route path="/chat" element={<ChatPage />} />
+        <Route path="/regolamento" element={<Regolamento />} />
+        <Route path="/contattaci" element={<Contattaci />} />
       </Routes>
     </Router>
   );

@@ -239,24 +239,28 @@ const TournamentList = () => {
                   <p>Partecipanti: {torneo.numeroMassimoPartecipanti}</p>
                   <p>Stato: {torneo.statoTorneo}</p>
                   <p>Descrizione: {torneo.descrizione}</p>
-                  <button
-                    onClick={() => handleEdit(torneo)}
-                    className="btn-edit"
-                  >
-                    Modifica
-                  </button>
-                  <button
-                    onClick={() => handleDelete(torneo.id)}
-                    className="btn-delete"
-                  >
-                    Elimina
-                  </button>
-                  <button
-                    onClick={() => handleParticipate(torneo.id)}
-                    className="btn-participate"
-                  >
-                    Partecipa
-                  </button>
+
+                  {/* Contenitore per i pulsanti all'interno della card */}
+                  <div className="button-group">
+                    <button
+                      onClick={() => handleEdit(torneo)}
+                      className="btn-edit"
+                    >
+                      Modifica
+                    </button>
+                    <button
+                      onClick={() => handleDelete(torneo.id)}
+                      className="btn-delete"
+                    >
+                      Elimina
+                    </button>
+                    <button
+                      onClick={() => handleParticipate(torneo.id)}
+                      className="btn-participate"
+                    >
+                      Partecipa
+                    </button>
+                  </div>
                 </div>
               </Col>
             ))

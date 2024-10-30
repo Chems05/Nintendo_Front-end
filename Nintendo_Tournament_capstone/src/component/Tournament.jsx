@@ -13,10 +13,18 @@ const Tournament = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [nomeTorneo, setNomeTorneo] = useState("");
   const [matchTeams, setMatchTeams] = useState({});
+  const [dropdownColors, setDropdownColors] = useState({}); // New state for dropdown colors
 
   useEffect(() => {
     fetchSquadre();
+    loadDropdownColors();
   }, [torneoId]);
+
+  const loadDropdownColors = () => {
+    const savedColors =
+      JSON.parse(localStorage.getItem("dropdownColors")) || {};
+    setDropdownColors(savedColors);
+  };
 
   const fetchSquadre = async () => {
     try {
@@ -62,11 +70,24 @@ const Tournament = () => {
     setMatchTeams((prev) => ({ ...prev, [matchIndex]: team }));
   };
 
+  const saveDropdownColors = (colors) => {
+    localStorage.setItem("dropdownColors", JSON.stringify(colors));
+  };
+
+  // Toggle dropdown color between success and danger
+  const toggleDropdownColor = (matchIndex) => {
+    setDropdownColors((prevColors) => {
+      const newColor =
+        prevColors[matchIndex] === "danger" ? "success" : "danger";
+      const updatedColors = { ...prevColors, [matchIndex]: newColor };
+      saveDropdownColors(updatedColors); // Save the updated colors to localStorage
+      return updatedColors;
+    });
+  };
+
   return (
     <div className="tournament-container">
-      <h2 className="tournament-title">
-        Gestisci le Squadre per il Torneo {nomeTorneo}
-      </h2>
+      <h2 className="tournament-title">Torneo {nomeTorneo}</h2>
 
       <Row>
         <Col md={4}>
@@ -123,39 +144,64 @@ const Tournament = () => {
             <h3>Tabellone</h3>
 
             {[8, 4, 2, 1].map((numMatches, roundIndex) => (
-              <div className="round" key={`round-${roundIndex}`}>
+              <div className="" key={`-${roundIndex}`}>
                 <h4>
                   {roundIndex === 3
-                    ? "FINALE"
+                    ? "VITTORIA"
                     : `Round ${roundIndex + 1} (${numMatches} Squadre)`}
                 </h4>
                 <div className="match-container">
-                  {Array.from({ length: numMatches }, (_, i) => (
-                    <div className="match" key={`match-${roundIndex}-${i}`}>
-                      <Dropdown>
-                        <Dropdown.Toggle variant="success">
-                          {matchTeams[`match-${roundIndex}-${i}`]
-                            ? matchTeams[`match-${roundIndex}-${i}`].nome
-                            : "Seleziona Team"}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          {squadre.map((squadra) => (
-                            <Dropdown.Item
-                              key={squadra.id}
-                              onClick={() =>
-                                handleSelectTeam(
-                                  `match-${roundIndex}-${i}`,
-                                  squadra
-                                )
-                              }
+                  {Array.from({ length: numMatches }, (_, i) => {
+                    const matchIndex = `match-${roundIndex}-${i}`;
+                    const isConnected = (roundIndex + i) % 2 === 0;
+
+                    return (
+                      <div
+                        className={`match ${
+                          isConnected ? "connected" : "no-connection"
+                        }`}
+                        key={matchIndex}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Dropdown>
+                            <Dropdown.Toggle
+                              variant={dropdownColors[matchIndex] || "success"}
                             >
-                              {squadra.nome}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div>
-                  ))}
+                              {matchTeams[matchIndex]
+                                ? matchTeams[matchIndex].nome
+                                : "Seleziona Team"}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              {squadre.map((squadra) => (
+                                <Dropdown.Item
+                                  key={squadra.id}
+                                  onClick={() =>
+                                    handleSelectTeam(matchIndex, squadra)
+                                  }
+                                >
+                                  {squadra.nome}
+                                </Dropdown.Item>
+                              ))}
+                            </Dropdown.Menu>
+                          </Dropdown>
+                          <Button
+                            variant="outline-secondary"
+                            size="sm"
+                            onClick={() => toggleDropdownColor(matchIndex)}
+                            style={{ marginTop: "10px" }} // Add spacing between the dropdown and button
+                          >
+                            Elimina
+                          </Button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             ))}

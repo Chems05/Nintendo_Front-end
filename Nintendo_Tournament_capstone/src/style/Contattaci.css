@@ -1,0 +1,70 @@
+/* Contenitore del modulo */
+.contact-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ff9900; /* Colore di sfondo arancione */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000000; /* Colore del titolo in nero */
+}
+
+.contact-form-container .contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-container .contact-form .form-group {
+  margin-bottom: 15px;
+}
+
+.contact-form-container .contact-form .form-group label {
+  margin-bottom: 5px;
+  color: #000000; /* Colore delle etichette in nero */
+}
+
+.contact-form-container .contact-form input,
+.contact-form-container .contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000; /* Bordo nero */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #000000; /* Colore del testo in nero */
+}
+
+.contact-form-container .contact-form input:focus,
+.contact-form-container .contact-form textarea:focus {
+  border-color: #ffffff; /* Bordo bianco quando in focus */
+  outline: none; /* Rimuove l'outline di default */
+}
+
+.contact-form-container .contact-form .submit-button {
+  padding: 10px 15px;
+  background-color: #303030; /* Colore di sfondo del pulsante */
+  color: white; /* Colore del testo del pulsante */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.contact-form-container .contact-form .submit-button:hover {
+  background-color: #ca3434; /* Colore di sfondo al passaggio del mouse */
+}
+
+/* Stili per il Popup di successo */
+.contact-form-container .success-popup {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #28a745; /* Colore verde */
+  color: white; /* Colore del testo in bianco */
+  border-radius: 4px;
+  text-align: center;
+  transition: opacity 0.5s ease; /* Transizione per l'opacità */
+}

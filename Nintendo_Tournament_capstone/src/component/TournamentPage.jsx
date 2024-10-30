@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import torneoImg from "../assets/tornei.png";
+import regolamentoImg from "../assets/regolamento.png";
+import contattaciImg from "../assets/contattaci.png";
 import "../style/TournamentPage.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,9 +15,10 @@ const TournamentPage = () => {
     setUser(storedUser);
   }, []);
 
-  const handleTournamentClick = () => {
-    navigate("/tournamentlist");
-  };
+  // Gestori di navigazione
+  const handleTournamentClick = () => navigate("/tournamentlist");
+  const handleRegolamentoClick = () => navigate("/regolamento");
+  const handleContattaciClick = () => navigate("/contattaci");
 
   return (
     <div className="tournament-page">
@@ -46,6 +49,24 @@ const TournamentPage = () => {
                 alt="Visualizza Tornei"
                 className="zoom-image"
                 onClick={handleTournamentClick}
+              />
+              <p className="text-center mt-2">Visualizza Tornei</p>
+              <br />
+            </Col>
+            <Col xs={12} md={6}>
+              <img
+                src={regolamentoImg}
+                alt="Visualizza Regolamento"
+                className="zoom-image"
+                onClick={handleRegolamentoClick}
+              />
+            </Col>
+            <Col xs={12} md={6}>
+              <img
+                src={contattaciImg}
+                alt="Visualizza Regolamento"
+                className="zoom-image"
+                onClick={handleContattaciClick}
               />
             </Col>
           </Row>

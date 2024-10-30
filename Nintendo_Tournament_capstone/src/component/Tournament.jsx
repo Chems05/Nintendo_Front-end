@@ -13,16 +13,17 @@ const Tournament = () => {
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [nomeTorneo, setNomeTorneo] = useState("");
   const [matchTeams, setMatchTeams] = useState({});
-  const [dropdownColors, setDropdownColors] = useState({}); // New state for dropdown colors
+  const [dropdownColors, setDropdownColors] = useState({});
 
   useEffect(() => {
     fetchSquadre();
     loadDropdownColors();
   }, [torneoId]);
 
+  // Carica i colori specifici del torneo da localStorage
   const loadDropdownColors = () => {
     const savedColors =
-      JSON.parse(localStorage.getItem("dropdownColors")) || {};
+      JSON.parse(localStorage.getItem(`dropdownColors_${torneoId}`)) || {};
     setDropdownColors(savedColors);
   };
 
@@ -70,17 +71,18 @@ const Tournament = () => {
     setMatchTeams((prev) => ({ ...prev, [matchIndex]: team }));
   };
 
+  // Salva i colori specifici del torneo in localStorage
   const saveDropdownColors = (colors) => {
-    localStorage.setItem("dropdownColors", JSON.stringify(colors));
+    localStorage.setItem(`dropdownColors_${torneoId}`, JSON.stringify(colors));
   };
 
-  // Toggle dropdown color between success and danger
+  // Alterna il colore del pulsante specifico per il torneo
   const toggleDropdownColor = (matchIndex) => {
     setDropdownColors((prevColors) => {
       const newColor =
         prevColors[matchIndex] === "danger" ? "success" : "danger";
       const updatedColors = { ...prevColors, [matchIndex]: newColor };
-      saveDropdownColors(updatedColors); // Save the updated colors to localStorage
+      saveDropdownColors(updatedColors); // Salva i colori aggiornati per il torneo corrente
       return updatedColors;
     });
   };
@@ -91,7 +93,11 @@ const Tournament = () => {
 
       <Row>
         <Col md={4}>
-          <Form onSubmit={handleCreateTeam} style={{ maxWidth: "250px" }}>
+          <Form
+            onSubmit={handleCreateTeam}
+            className="create-team-form"
+            style={{ maxWidth: "250px" }}
+          >
             <Form.Group controlId="formTeamName">
               <Form.Label>Nome della Squadra</Form.Label>
               <Form.Control
@@ -191,10 +197,14 @@ const Tournament = () => {
                             </Dropdown.Menu>
                           </Dropdown>
                           <Button
-                            variant="outline-secondary"
+                            variant="outline-light"
                             size="sm"
                             onClick={() => toggleDropdownColor(matchIndex)}
-                            style={{ marginTop: "10px" }} // Add spacing between the dropdown and button
+                            style={{
+                              marginTop: "10px",
+                              backgroundColor: "transparent",
+                              color: "gray",
+                            }}
                           >
                             Elimina
                           </Button>
@@ -211,7 +221,9 @@ const Tournament = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Partecipanti della {selectedTeam?.nome}</Modal.Title>
+          <Modal.Title className="modal-title">
+            Partecipanti della {selectedTeam?.nome}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedTeam?.giocatori && selectedTeam.giocatori.length > 0 ? (
@@ -234,7 +246,7 @@ const Tournament = () => {
               </div>
             ))
           ) : (
-            <p>Nessun partecipante trovato.</p>
+            <p className="no-participants">Nessun partecipante trovato.</p>
           )}
         </Modal.Body>
         <Modal.Footer>

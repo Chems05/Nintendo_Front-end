@@ -1,17 +1,16 @@
-/* Contenitore del modulo */
 .contact-form-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  background-color: #ff9900; /* Colore di sfondo arancione */
+  background-color: #ff9900;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #000000; /* Colore del titolo in nero */
+  color: #000000;
 }
 
 .contact-form-container .contact-form {
@@ -25,29 +24,29 @@
 
 .contact-form-container .contact-form .form-group label {
   margin-bottom: 5px;
-  color: #000000; /* Colore delle etichette in nero */
+  color: #000000;
 }
 
 .contact-form-container .contact-form input,
 .contact-form-container .contact-form textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #000000; /* Bordo nero */
+  border: 1px solid #000000;
   border-radius: 4px;
   font-size: 16px;
-  color: #000000; /* Colore del testo in nero */
+  color: #000000;
 }
 
 .contact-form-container .contact-form input:focus,
 .contact-form-container .contact-form textarea:focus {
-  border-color: #ffffff; /* Bordo bianco quando in focus */
-  outline: none; /* Rimuove l'outline di default */
+  border-color: #ffffff;
+  outline: none;
 }
 
 .contact-form-container .contact-form .submit-button {
   padding: 10px 15px;
-  background-color: #303030; /* Colore di sfondo del pulsante */
-  color: white; /* Colore del testo del pulsante */
+  background-color: #303030;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -55,16 +54,15 @@
 }
 
 .contact-form-container .contact-form .submit-button:hover {
-  background-color: #ca3434; /* Colore di sfondo al passaggio del mouse */
+  background-color: #ca3434;
 }
 
-/* Stili per il Popup di successo */
 .contact-form-container .success-popup {
   margin-top: 20px;
   padding: 10px;
-  background-color: #28a745; /* Colore verde */
-  color: white; /* Colore del testo in bianco */
+  background-color: #28a745;
+  color: white;
   border-radius: 4px;
   text-align: center;
-  transition: opacity 0.5s ease; /* Transizione per l'opacità */
+  transition: opacity 0.5s ease;
 }

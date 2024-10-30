@@ -66,7 +66,7 @@ const HomePage = () => {
         <div className="container justify-content-center">
           <div className="row align-items-center">
             <div className="col-md-6">
-              <h3 className="text-primary fw-bold">
+              <h3 className="text-danger fw-bold">
                 Piattaforma esclusiva nintendo!
               </h3>
               <p>
@@ -75,9 +75,6 @@ const HomePage = () => {
                 stessa piattaforma equamente in vari tornei creati dalla
                 community e perche no.
               </p>
-              <a href="#" className="btn btn-primary btn-lg">
-                Scopri di più
-              </a>
             </div>
             <div className="col-md-6">
               <img
@@ -100,15 +97,12 @@ const HomePage = () => {
               />
             </div>
             <div className="col-md-6">
-              <h3 className="text-primary fw-bold">una marea di giochi!</h3>
+              <h3 className="text-danger fw-bold">una marea di giochi!</h3>
               <p>
                 sfida i tuoi amici o altri utenti in centinaia di giochi in
                 competizioni pvp,speedrun,achivment e moltissime altre modalità
                 personalizzate per rendere la sfida sempre piua vvincente{" "}
               </p>
-              <a href="#" className="btn btn-primary btn-lg">
-                Scopri di più
-              </a>
             </div>
           </div>
         </div>

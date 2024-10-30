@@ -41,6 +41,13 @@
   margin: 20px 0;
 }
 
+.create-team-form {
+  padding: 15px;
+  border: 2px solid rgb(255, 255, 255); /* Cornice nera */
+  background-color: rgba(250, 250, 250, 0.171); /* Sfondo rosso trasparente */
+  border-radius: 8px; /* Angoli arrotondati */
+}
+
 .match-container {
   display: flex;
   justify-content: center;
@@ -91,4 +98,12 @@
 .no-connection::before,
 .no-connection::after {
   display: none;
+}
+
+.modal-title {
+  color: black; /* Colore nero per il titolo */
+}
+
+.no-participants {
+  color: black; /* Colore nero per il messaggio "Nessun partecipante trovato" */
 }

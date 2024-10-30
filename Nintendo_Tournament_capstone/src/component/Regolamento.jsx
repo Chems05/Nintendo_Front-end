@@ -2,14 +2,15 @@ import "../style/regolamento.css";
 const Regolamento = () => {
   return (
     <div className="regolamento-container">
-      <h1 className="regolamento-title">Regolamento del Torneo</h1>
+      <h1 className="regolamento-title">Regolamento semigenerale</h1>
       <div className="regolamento-content">
         <h3>1. ATTENZIONE</h3>
         <h4>
           QUESTO REGOLAMENTO VALE PER CHI DECIDE DI USUFRUIRE DEL SUPPORTO DEI
           SERVIZI DELLA PIATTAFORMA QUINDI VENENDO GESTITO IL TUTTO DA UN TEAM
           SE SI VUOLE CREARE UN PROPRIO TORNEO PERSONALIZZATO NON CI ASSUMIAMO
-          ALCUNA RESPONSABILITA DI FRODI,CHEATING,SABOTAGGIO
+          ALCUNA RESPONSABILITA DI FRODI,CHEATING,SABOTAGGIO, MA COMUNQUE
+          LEGGERE E SEGUIRE IL REGOLAMENTO PER NON INCAPPARE IN SANZIONI.
         </h4>
 
         <h3>2. Partecipazione</h3>
